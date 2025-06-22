@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 900px; margin: auto; padding: 30px; background-color: #1f1f1f; border-radius: 10px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.03);">
+
+  <h2 style="text-align: center; color: #f0f0f0; margin-bottom: 25px;">
+    📋 Bookings for <span style="color: #4aa3df;">{{ event.title }}</span>
+  </h2>
+
+  <table style="width: 100%; border-collapse: collapse; color: #ddd;">
+    <thead>
+      <tr style="background-color: #2980b9; color: white;">
+        <th style="padding: 12px; text-align: left;">Name</th>
+        <th style="padding: 12px; text-align: left;">Email</th>
+        <th style="padding: 12px; text-align: left;">Branch</th>
+        <th style="padding: 12px; text-align: left;">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in tickets %}
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 10px;">{{ ticket.student_name }}</td>
+          <td style="padding: 10px;">{{ ticket.email }}</td>
+          <td style="padding: 10px;">{{ ticket.branch }}</td>
+          <td style="padding: 10px;">{{ ticket.year }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if not tickets %}
+    <p style="text-align: center; margin-top: 20px; color: #aaa;">No bookings yet.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

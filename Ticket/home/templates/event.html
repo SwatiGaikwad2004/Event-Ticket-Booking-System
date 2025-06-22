@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+  <div style="max-width: 600px; margin: 20px auto; text-align: center;">
+    {% for message in messages %}
+      <p style="color: lightgreen; font-weight: bold;">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div style="max-width: 600px; margin: auto; background: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(255,255,255,0.05);">
+  <h2 style="text-align: center; margin-bottom: 20px; color: #f0f0f0;">➕ Add New Event</h2>
+  
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="color: #ccc;">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" style="background: #4B9CD3; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 15px; cursor: pointer;">
+      Create Event
+    </button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background-color: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+">
+
+  <h2 style="text-align: center; color: #f2f2f2; margin-bottom: 25px;">
+    🎫 Book Ticket for <em>{{ event.title }}</em>
+  </h2>
+
+  <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" style="
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    ">
+      💳 Pay & Book
+    </button>
+  </form>
+
+  <div style="margin-top: 20px; text-align: center;">
+    <a href="{% url 'home' %}" style="text-decoration: none; color: #9ecbff;">
+      ← Back to Events
+    </a>
+  </div>
+</div>
+{% endblock %}

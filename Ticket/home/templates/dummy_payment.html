@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: #e0e0e0;
+">
+
+  <h2 style="color: #f2f2f2; margin-bottom: 25px;">💳 Dummy Payment Page</h2>
+
+  <p style="font-size: 18px;"><strong>Event:</strong> <span style="color: #9ecbff;">{{ event.title }}</span></p>
+  <p style="font-size: 18px; margin-bottom: 30px;"><strong>Amount:</strong> ₹{{ event.price }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" style="
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    ">
+      Pay Now (Dummy)
+    </button>
+  </form>
+
+  <div style="margin-top: 20px;">
+    <a href="{% url 'home' %}" style="text-decoration: none; color: #9ecbff;">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

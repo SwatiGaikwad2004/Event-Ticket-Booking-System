@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="
+    background-color: rgba(30, 30, 30, 0.85);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+">
+
+    <h2 style="color: #f2f2f2; text-align: center;">🎫 Ticket Confirmed – {{ event.title }}</h2>
+
+    <p>Hi <strong>{{ user.username }}</strong>,</p>
+
+    <p>Thank you for registering for our technical event. Your ticket has been successfully booked!</p>
+
+    <div style="margin: 20px 0;">
+        <p><strong>Event:</strong> <span style="color: #9ecbff;">{{ event.title }}</span></p>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+    </div>
+
+    <p>Get ready to explore new ideas, technologies, and network with brilliant minds. We can't wait to welcome you!</p>
+
+    <!-- Optional Button to View Event Details -->
+    <!-- 
+    <a href="{% url 'home' %}" style="
+        display: inline-block;
+        background-color: #0066cc;
+        color: #fff;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    ">View Event Details</a> 
+    -->
+
+    <div style="
+        margin-top: 30px;
+        font-size: 13px;
+        color: #aaa;
+        border-top: 1px solid #555;
+        padding-top: 15px;
+    ">
+        This is an automated message from Smart Campus Booking.<br>
+        For queries, contact the organizing committee.
+    </div>
+</div>
+{% endblock %}

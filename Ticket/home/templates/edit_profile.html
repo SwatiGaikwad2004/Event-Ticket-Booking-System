@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  background-color: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+">
+
+  <h2 style="text-align: center; color: #f2f2f2; margin-bottom: 25px;">Edit Profile</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label style="display: block; margin-bottom: 5px;">First Name:</label>
+    <input type="text" name="first_name" value="{{ request.user.first_name }}"
+      style="width: 100%; padding: 10px; margin-bottom: 15px;
+             border-radius: 8px; border: 1px solid #444;
+             background-color: #1e1e1e; color: #fff;">
+
+    <label style="display: block; margin-bottom: 5px;">Last Name:</label>
+    <input type="text" name="last_name" value="{{ request.user.last_name }}"
+      style="width: 100%; padding: 10px; margin-bottom: 15px;
+             border-radius: 8px; border: 1px solid #444;
+             background-color: #1e1e1e; color: #fff;">
+
+    <label style="display: block; margin-bottom: 5px;">Email:</label>
+    <input type="email" name="email" value="{{ request.user.email }}"
+      style="width: 100%; padding: 10px; margin-bottom: 25px;
+             border-radius: 8px; border: 1px solid #444;
+             background-color: #1e1e1e; color: #fff;">
+
+    <button type="submit"
+      style="width: 100%; background-color: #4B9CD3; color: white;
+             padding: 12px; border: none; border-radius: 8px;
+             font-size: 16px; cursor: pointer;">
+      Save Changes
+    </button>
+  </form>
+
+  {% if messages %}
+    <div style="margin-top: 20px;">
+      {% for message in messages %}
+        <p style="color: lightgreen; text-align: center;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

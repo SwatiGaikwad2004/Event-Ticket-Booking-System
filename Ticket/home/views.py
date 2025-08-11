@@ -37,8 +37,8 @@ def signup_view(request):
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
-        first_name = request.POST['first_name']  # ✅ get first name
-        last_name = request.POST['last_name']    # ✅ get last name
+        first_name = request.POST['first_name'] 
+        last_name = request.POST['last_name']    
 
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already taken.")
@@ -66,7 +66,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # ya jo bhi page chahiye
+                return redirect('home')  
             else:
                 messages.error(request, "Invalid username or password")
         else:
@@ -143,7 +143,7 @@ def book_ticket(request, event_id):
             )
 
             messages.success(request, "Payment successful. Ticket booked!")
-            return redirect('home')  # ya koi thank-you page
+            return redirect('home')  
     else:
         form = TicketForm()
 
@@ -168,8 +168,8 @@ def edit_profile(request):
         user.save()
         messages.success(request, "Profile updated successfully.")
         
-        # ✅ YAHAN redirect karo after update
-        return redirect('home')  # ya 'profile' agar tumne profile page banaya ho
+       
+        return redirect('home') 
     
     return render(request, 'edit_profile.html')
 
@@ -188,7 +188,7 @@ def dummy_payment(request):
         return redirect('home')
 
     if request.method == 'POST':
-        # Dummy: Always success
+       
         ticket = Ticket.objects.create(
             user=request.user,
             event=event,
@@ -197,9 +197,9 @@ def dummy_payment(request):
             year=booking_data['year'],
             email=booking_data['email'],
             mobile=booking_data['mobile'],
-            paid_amount=0  # dummy payment
+            paid_amount=0 
         )
-        # Email logic (optional)
+        
         send_mail(
             'Ticket Booked Successfully!',
             f'Hi {ticket.student_name}, your ticket for {event.title} is booked.',
@@ -259,13 +259,13 @@ def add_event(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save(commit=False)
-            event.created_by = request.user   # ✅ Set this manually
+            event.created_by = request.user   
             event.save()
-            messages.success(request, '✅ Event created successfully!')
-            return redirect('host_dashboard')  # or wherever you want
+            messages.success(request, ' Event created successfully!')
+            return redirect('host_dashboard')  
         else:
-            print(form.errors)  # Debug: shows what's wrong
-            messages.error(request, '❌ Form is invalid. Please check your inputs.')
+            print(form.errors) 
+            messages.error(request, ' Form is invalid. Please check your inputs.')
     else:
         form = EventForm()
     return render(request, 'event.html', {'form': form})
